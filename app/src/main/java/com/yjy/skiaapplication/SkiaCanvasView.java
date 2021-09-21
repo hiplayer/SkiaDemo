@@ -1,6 +1,8 @@
 package com.yjy.skiaapplication;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.SurfaceTexture;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -31,6 +33,7 @@ public class SkiaCanvasView extends SurfaceView implements SurfaceHolder.Callbac
     private HandlerThread mHandlerThread;
     private Handler mHandler;
     private static final int DRAW = 1;
+    private static final int DRAW_IMAGE = 2;
 
     public SkiaCanvasView(Context context) {
         this(context,null);
@@ -61,8 +64,25 @@ public class SkiaCanvasView extends SurfaceView implements SurfaceHolder.Callbac
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
+        doDraw(holder);
+        //doDrawImage(holder);
+    }
+
+    private void doDraw (SurfaceHolder holder) {
         Message message = new Message();
         message.what = DRAW;
+        message.obj = holder.getSurface();
+        message.arg1 = getWidth();
+        message.arg2 = getHeight();
+        mHandler.sendMessage(message);
+        Log.e("create","width:"+getWidth());
+        Log.e("create","height"+getHeight());
+    }
+
+
+    private void doDrawImage (SurfaceHolder holder) {
+        Message message = new Message();
+        message.what = DRAW_IMAGE;
         message.obj = holder.getSurface();
         message.arg1 = getWidth();
         message.arg2 = getHeight();
@@ -95,7 +115,10 @@ public class SkiaCanvasView extends SurfaceView implements SurfaceHolder.Callbac
                     synchronized (SkiaCanvasView.class){
                         SkiaUtils.native_render((Surface) msg.obj,msg.arg1,msg.arg2);
                     }
-
+                case DRAW_IMAGE:
+                    synchronized (SkiaCanvasView.class) {
+                        //SkiaUtils.native_render((Surface) msg.obj, BitmapFactory.decodeResource(getResources(), R.drawable.intel_inside));
+                    }
                     break;
             }
         }

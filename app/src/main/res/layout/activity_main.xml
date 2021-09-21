@@ -5,9 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
+<!--
     <com.yjy.skiaapplication.SkiaCanvasView
         android:layout_height="match_parent"
         android:layout_width="match_parent"/>
+-->
 
+    <com.yjy.skiaapplication.BaseSurface
+        android:id="@+id/baseSurface"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </FrameLayout>

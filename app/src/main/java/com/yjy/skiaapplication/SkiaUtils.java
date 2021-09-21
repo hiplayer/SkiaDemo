@@ -20,5 +20,6 @@ public class SkiaUtils {
 
     public static native void native_renderCanvas(Bitmap bitmap);
 
-    public static native void native_render(Surface surface,int width,int height);
+    public static native void native_render(Surface surface, int width,int height);
+    public static native void native_render(Surface surface, Bitmap bitmap);
 }
