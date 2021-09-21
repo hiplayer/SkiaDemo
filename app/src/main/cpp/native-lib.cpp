@@ -59,11 +59,11 @@ native_render(JNIEnv *env, jobject thiz, jobject jSurface,jint width,jint height
 
     SkPaint paint2;
     paint2.setColor(SK_ColorWHITE);
-    const char *str = "Hello Surface Skia";
+    const char *str = "Hello Surface Intel 中国";
 
-    SkFont skfont(SkTypeface::MakeDefault(),100);
+    SkFont skfont(SkTypeface::MakeDefault(),80);
 
-    background->drawString(str,100,100,skfont,paint2);
+    background->drawString(str,50,100,skfont,paint2);
 
     SkImageInfo imageInfo = background->imageInfo();
 
@@ -122,7 +122,7 @@ native_renderCanvas(JNIEnv *env, jobject thiz, jobject bitmap) {
 
     SkPaint paint2;
     paint2.setColor(SK_ColorBLUE);
-    const char *str = "Hello Skia";
+    const char *str = "Hello Skia 中国 intel";
 
     SkFont skfont(SkTypeface::MakeDefault(),100);
 
