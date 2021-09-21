@@ -9,7 +9,6 @@
 #define SkDataTable_DEFINED
 
 #include "include/core/SkData.h"
-#include "include/core/SkString.h"
 #include "include/private/SkTDArray.h"
 
 /**
@@ -109,11 +108,11 @@ private:
     SkDataTable(const void* array, size_t elemSize, int count,
                 FreeProc, void* context);
     SkDataTable(const Dir*, int count, FreeProc, void* context);
-    virtual ~SkDataTable();
+    ~SkDataTable() override;
 
     friend class SkDataTableBuilder;    // access to Dir
 
-    typedef SkRefCnt INHERITED;
+    using INHERITED = SkRefCnt;
 };
 
 #endif
